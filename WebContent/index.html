@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Index-Demo</title>
+<style type="text/css">
+	a[href^='https']{
+		color: red;
+	}
+	
+	a[href$='.pdf']{
+		color: green;
+	}
+	
+	article > section:FIRST-CHILD > header {
+		background-color: yellow;
+		height: 50px;
+		width: 500px;
+		border: 1px solid grey;
+		border-radius: 15px;
+		padding: 10px;
+		text-align: center;
+		box-shadow: -15px -10px 15px gray;
+		color: blue;
+		font-size: 2em;
+		text-shadow: -5px -5px 15px blue;
+	}
+	
+	article > section > div {
+		margin: 10;
+		border: 1px solid blue;
+		border-radius: 15px;		
+		background: -webkit-linear-gradient(left, black, white);
+	}
+</style>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script type="text/javascript">
+
+	console.log("Canvas Support: " + Modernizr.canvas);
+	console.log("Canvas Support: " + Modernizr.geolocation);
+	console.log("Canvas Support: " + Modernizr.websockets);
+</script>
+
+</head>
+
+<body>
+	<header>
+		<h3>HTML5 Training</h3>
+		<nav>
+			<ul>
+				<li><a href="#home">Home</a></li>
+				<li><a href="#storage">Storage</a></li>
+				<li><a href="https://localhost/login.jsp">login</a></li>
+				<li><a href="myfile/doc/olaala.pdf">MyBook</a></li>
+			</ul>
+		</nav>
+	</header>
+	<article>
+		<section>
+			<header>
+				<div>
+					<span>This is an HTML5 Training</span>
+				</div>
+			</header>
+			<div>
+				<details>
+					<summary>Topics Covered</summary>
+					<ul>
+						<li>New Markup</li>
+						<li>Forms</li>
+						<li>Storage</li>
+						<li>Background Workers</li>
+					</ul>
+				</details>
+			</div>
+		</section>
+
+		<section>
+			<header>
+				<div>Examples:</div>
+			</header>
+			<div>
+				<p>Canvas</p>
+					<div id=canvasdiv></div>
+				<p>Progess</p>
+				<progress max="100" value="40" ondblclick="alert('Vishal')"></progress>
+			</div>
+		</section>
+	</article>
+	<script type="text/javascript">
+					if (Modernizr.canvas) {
+
+						//document.getElementById("canvasdiv").innerHtml='<canvas style="width: 200px; height: 200px; background-color: red"></canvas>';
+					document.getElementById("canvasdiv").innerHtml="Hello Shammi";
+					}
+</script>
+
+</body>
+</html>

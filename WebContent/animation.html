@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Animations</title>
+<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+<style type="text/css">
+	.box{
+		height: 150px;
+		width: 150px;
+		border: 1px solid blue;
+		background: -webkit-linear-gradient(left, grey, white);
+		margin: 10px;
+		text-align: center;
+	}
+	
+	@keyframes fade{
+	
+	0% {opacity: 0.0},
+	10% {opacity: 0.1;},
+	20% {opacity: 0.2;},
+	30% {opacity: 0.3;},
+	40% {opacity: 0.4;},
+	60% {opacity: 0.6;},
+	70% {opacity: 0.7;}
+	80% {opacity: 0.8;}
+	90% {opacity: 0.9;}
+	100% {opacity: 1.0;} 
+	}
+	
+	.box:HOVER {
+	animation: fade;
+	animation-duration: 8s;
+	}
+	
+	.items > p:nth-child(even){
+		background-color: teal;
+	}
+	
+	.items > p:nth-child(odd){
+		background-color: olive;
+	}
+
+	@keyframes evenHighlight{
+		from{background-color: teal;}
+		to{background-color: yellow;}
+	}
+	
+	@keyframes oddHighlight{
+		from{background-color: olive;}
+		to{background-color: yellow;}
+	}
+	
+	.items > p:nth-child(even):hover{
+		animation: evenHighlight;
+		animation-duration: 1s;
+	}
+	
+	.items > p:nth-child(odd):hover{
+		animation: oddHighlight;
+		animation-duration: 1s;
+	}
+	
+	@keyframes close{
+		0% { height: 100%; opacity: 1.0 }
+		100% { height: 0%; opacity: 0.0 } 
+	}
+	
+	@keyframes open{
+		0% { height: 0%; opacity: 0.0 }
+		100% { height: 100%; opacity: 1.0 } 
+	}
+	
+	.widgetOpen{
+		animation: open;
+		animation-duration: 2s;
+		animation-fill-mode: forwards;
+	}
+	
+	.widgetClose{
+		animation: close;
+		animation-duration: 2s;
+		animation-fill-mode: forwards;
+	}
+	
+	@keyframes ride{
+		from {transform: translateX(0px);}
+		to {transform: translateX(100%);}
+	}
+	.scroll{
+		animation: ride;
+		animation-duration: 8s;
+		animation-iteration-count: infinite;
+	}
+	
+</style>
+
+<script type="text/javascript">
+	var state=1;
+	
+	function toggle(){
+		if(state==1){
+			$(".items").removeClass('widgetOpen');
+			$(".items").addClass('widgetClose');
+			state=2;
+		}else{
+			$(".items").removeClass('widgetClose');
+			$(".items").addClass('widgetOpen');
+			state=1;
+		}	
+		
+		
+	}
+</script>
+</head>
+<body>
+	<h2 class="scroll">Animations</h2>
+	
+	<article>
+	
+		<div class="box">
+			CSS Animations
+		</div>
+	
+	<p>
+	<button onclick="toggle()">Toggle</button>
+	</p>
+	
+	<div class="items">
+		<p>Vishal</p>
+		<p>Shammi</p>
+		<p>Julien</p>
+		<p>Miles</p>
+		<p>Ravi</p>
+		<p>Shailendra</p>
+		<p>Ashwi</p>
+	
+	</div>
+	
+	
+	</article>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee</title>
+<style type="text/css">
+input:invalid+#nameMsg {
+	visibility: visible;
+	color: red;
+}
+
+input:valid+#nameMsg {
+	visibility: hidden;
+}
+
+input:invalid {
+	border-color: red;
+}
+
+input:valid {
+	border-color: green;
+}
+</style>
+<script src="js/contactsDB.js" type="text/javascript" charset="utf-8" async defer></script>
+<script type="text/javascript">
+		var nameInput;
+		var spanMsg;
+		
+		function load() {
+			openContactDB();
+			
+			nameInput = document.getElementById("name");
+			spanMsg= document.getElementById("nameMsg");
+			nameInput.addEventListener("invalid", function(){
+				
+				var validity = nameInput.validity;
+				
+				if(validity.valueMissing)
+				{
+					spanMsg.innerHTML="The name is mismatch";
+					
+				}else if(validity.patternMismatch){
+					spanMsg.innerHTML="The name is not as per pattern";
+				} 
+			}, false);
+			
+		}
+		
+		function validateName(){
+			nameInput.checkValidity();
+		}
+</script>
+
+</head>
+<body onload="load()">
+	<header>
+		<h2>New Forms</h2>
+	</header>
+	<article>
+		<form action="">
+			<fieldset>
+				<p>
+					<label for="name">Name</label>
+				</p>
+				<div>
+					<input type="text" id="name" placeholder="naaame" required
+						autofocus pattern="[a-zA-Z]{2,}" onblur="validateName()"> <span id="nameMsg">
+						The name is required and should have only chars</span>
+				</div>
+
+				<p>
+					<label for="email">Email</label>
+				</p>
+				<div>
+					<input type="email" id="email">
+				</div>
+
+				<p>
+					<label for="companyURL">URL</label>
+				</p>
+				<div>
+					<input type="url" id="companyURL">
+				</div>
+
+				<p>
+					<label for="dob">Date of Birth</label>
+				</p>
+				<div>
+					<input type="date" id="dob">
+				</div>
+				<p>
+					<button>Save</button>
+
+				</p>
+
+
+			</fieldset>
+		</form>
+	</article>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Web Storage</title>
+
+<script type="text/javascript">
+	
+function saveTasks() {
+	if(window.localStorage){
+		var taskDiv = document.getElementById("taskdiv");
+		localStorage.setItem("myTasks", taskDiv.innerHTML);
+		alert("tasks saved");
+	}
+}
+</script>
+</head>
+<body onload="reloadPreviousData()">
+
+	
+	<h2>Web Storage</h2>
+
+	<p>Tasks</p>
+	
+	<div id="taskdiv" contenteditable="true" style="height: 200px; width: 150px; border: 1px solid blue;">
+		
+	
+	</div>
+	<p>
+		<button onclick="saveTasks()">Save</button>
+	</p>
+</body>
+</html>

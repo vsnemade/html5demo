@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Geo Location</title>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<style type="text/css">
+
+#mapDiv{
+	width: 500px;
+	height: 500px;
+}
+table, td,tr {
+border: 1px solid blue;
+padding: 10px;
+}
+
+table {
+	border-collapse: collapse;
+	 
+}
+</style>
+<script type="text/javascript">
+	function load() {
+		if (window.navigator.geolocation) {
+			var geo = window.navigator.geolocation;
+
+			var options = {
+
+				enableHighAccuracy : true,
+				maximumAge : 0,
+				timeout : 10000
+			}
+			geo.getCurrentPosition(onSuccess, onError, options);
+
+		} else {
+			console.log("Geo Location Not Supported");
+		}
+	}
+
+	function onSuccess(position) {
+		document.getElementById("latitude").innerHTML = position.coords.latitude;
+		document.getElementById("longitude").innerHTML = position.coords.longitude;
+		document.getElementById("altitude").innerHTML = position.coords.altitude;
+		document.getElementById("accuracy").innerHTML = position.coords.accuracy;
+		
+		createMap(position.coords.latitude,position.coords.longitude);
+	}
+	
+	function createMap(latitude,longitude){
+		
+		var latLng = new google.maps.LatLng(latitude,longitude);
+		var options = {
+				zoom: 16,
+				center: latLng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		
+		new google.maps.Map(
+			document.getElementById("mapDiv"),
+			options
+		);
+	}
+
+	function onError(error) {
+		document.getElementById("message").innerHTML = error.code + "---"
+				+ error.message;
+	}
+</script>
+</head>
+<body onload="load()">
+
+	<h2>Geo Location</h2>
+
+	<div id="message"></div>
+
+	<table>
+		<tbody>
+			<tr>
+				<td>Latitude:</td><td><div id="latitude"></div></td>
+			</tr>
+			<tr>
+				<td>Longitude:</td><td><div id="longitude"></div></td>
+			</tr>
+			<tr>
+				<td>Altitude:</td><td><div id="altitude"></div></td>
+			</tr>
+			<tr>	
+				<td>Accuracy(meters):</td><td><div id="accuracy"></div></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div id="mapDiv"></div>
+	
+</body>
+</html>
